@@ -1,10 +1,21 @@
 const input = document.getElementById("input");
 const add = document.getElementById("add");
 const ul = document.getElementById("itens");
-const lista_render = ["Fazer as compras no supermercado", "Meditar durante 30 minutos"];
+const lista_render = JSON.parse(localStorage.getItem("lista_salva")) ? JSON.parse(localStorage.getItem("lista_salva")) : ["Fazer as compras no supermercado", "Meditar durante 30 minutos"];
+
+//função para adicionar 
+function adicionarTarefas() {
+    add.addEventListener("click", () => {
+        lista_render.push(input.value);
+        console.log(lista_render);
+        renderizaTarefas(lista_render);
+        localStorage.setItem("lista_salva", JSON.stringify(lista_render));
+    })
+
+}
+adicionarTarefas();
 
 ///função para excluir 
-
 function removeTarefas(id) {
     const h2 = document.querySelectorAll(".title_item");
     h2.forEach((e) => {
@@ -13,10 +24,10 @@ function removeTarefas(id) {
         }
     })
     renderizaTarefas(lista_render);
+    localStorage.setItem("lista_salva", JSON.stringify(lista_render));
 }
 
 //função para renderizar sem valores
-
 function semTarefasRender(lista) {
     ul.innerHTML = "";
     if (lista.length === 0) {
@@ -27,8 +38,7 @@ function semTarefasRender(lista) {
     }
 }
 
-///função para renderizar valores existentes
-
+//função para renderizar valores existentes
 function tarefasExistentesRender(lista) {
     ul.innerHTML = "";
     lista.forEach((e) => {
@@ -45,10 +55,7 @@ function tarefasExistentesRender(lista) {
     adicionaClick();
 }
 
-
-
 //função condicional para renderizar
-
 function renderizaTarefas(lista) {
     ul.innerHTML = "";
 
@@ -63,7 +70,6 @@ renderizaTarefas(lista_render);
 
 
 ///Função para adicionar click em excluir
-
 function adicionaClick() {
     const excluir = document.querySelectorAll(".excluir");
     excluir.forEach((e) => {
