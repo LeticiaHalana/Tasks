@@ -3,37 +3,70 @@ const add = document.getElementById("add");
 const ul = document.getElementById("itens");
 const lista_render = ["Fazer as compras no supermercado", "Meditar durante 30 minutos"];
 
+///função para excluir 
+
+function removeTarefas(id) {
+    const h2 = document.querySelectorAll(".title_item");
+    h2.forEach((e) => {
+        if (e.id == id) {
+            lista_render.splice(id, 1);
+        }
+    })
+    renderizaTarefas(lista_render);
+}
 
 //função para renderizar sem valores
 
-function semTarefasRender() {
-    ul.innerHTML = `
+function semTarefasRender(lista) {
+    ul.innerHTML = "";
+    if (lista.length === 0) {
+        ul.innerHTML = `
        <h3 class="title_sem_item">Without any task registered...</h3>
         
     `
+    }
 }
 
 ///função para renderizar valores existentes
 
 function tarefasExistentesRender(lista) {
+    ul.innerHTML = "";
     lista.forEach((e) => {
+
         ul.insertAdjacentHTML("afterbegin",
             `
            <li class="item">
-                <h2 class="title_item">${e}</h2> <button class="excluir">Excluir</button>
+                <h2 id="${lista.indexOf(e)}" class="title_item">${e}</h2> <button id="${lista.indexOf(e)}" class="excluir">Excluir</button>
             </li> 
+            
         `);
+
     });
+    adicionaClick();
 }
+
+
 
 //função condicional para renderizar
 
 function renderizaTarefas(lista) {
     ul.innerHTML = "";
+
     if (lista.length == 0) {
-        semTarefasRender();
+        semTarefasRender(lista);
     } else {
         tarefasExistentesRender(lista);
     }
+    adicionaClick();
 }
 renderizaTarefas(lista_render);
+
+
+///Função para adicionar click em excluir
+
+function adicionaClick() {
+    const excluir = document.querySelectorAll(".excluir");
+    excluir.forEach((e) => {
+        return e.onclick = function () { removeTarefas(e.id) };
+    })
+}
