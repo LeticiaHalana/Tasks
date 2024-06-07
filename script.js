@@ -6,10 +6,17 @@ const lista_render = JSON.parse(localStorage.getItem("lista_salva")) ? JSON.pars
 //função para adicionar 
 function adicionarTarefas() {
     add.addEventListener("click", () => {
-        lista_render.push(input.value);
-        console.log(lista_render);
-        renderizaTarefas(lista_render);
-        localStorage.setItem("lista_salva", JSON.stringify(lista_render));
+
+        if (input.value == "") {
+            alert("No tasks added! Write your task to add to the list.");
+        } else {
+            lista_render.push(input.value);
+            console.log(lista_render);
+            renderizaTarefas(lista_render);
+            localStorage.setItem("lista_salva", JSON.stringify(lista_render));
+        }
+
+        input.value = "";
     })
 
 }

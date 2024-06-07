@@ -22,7 +22,7 @@ body {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
-    
+
 }
 
 .title_logo {
@@ -32,7 +32,7 @@ body {
 
 }
 
-.dark-mode-title{
+.dark-mode-title {
     color: white;
 }
 
@@ -43,7 +43,7 @@ body {
     flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
-    padding: 15px 15px;
+    padding: 0px 15px;
     width: 100%;
     border: transparent;
     border-radius: 8px;
@@ -52,6 +52,8 @@ body {
 .input_style {
     border: transparent;
     background-color: var(--color-grayScale4);
+    width: 100%;
+    padding: 15px;
 }
 
 input:focus {
@@ -137,7 +139,7 @@ h3 {
     width: 100%;
 }
 
-.ligth-mode{
+.ligth-mode {
     background-image: url(./assets/lua.png);
     background-color: white;
     border: transparent;
@@ -151,11 +153,11 @@ h3 {
     right: 10px;
 }
 
-.ligth-mode:hover{
+.ligth-mode:hover {
     background-color: #c0713c;
 }
 
-.dark-mode{
+.dark-mode {
     background-image: url(./assets/sol.png);
     background-color: var(--color-grayScale1);
     border: transparent;
@@ -169,11 +171,11 @@ h3 {
     right: 10px;
 }
 
-.dark-mode:hover{
+.dark-mode:hover {
     background-color: white;
 }
 
-body.dark-mode-body{
+body.dark-mode-body {
     background-color: var(--color-grayScale1);
     color: white;
 }
