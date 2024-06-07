@@ -46,7 +46,7 @@ function tarefasExistentesRender(lista) {
         ul.insertAdjacentHTML("afterbegin",
             `
            <li class="item">
-                <h2 id="${lista.indexOf(e)}" class="title_item">${e}</h2> <button id="${lista.indexOf(e)}" class="excluir">Excluir</button>
+                <h2 id="${lista.indexOf(e)}" class="title_item">${e}</h2> <button id="${lista.indexOf(e)}" class="excluir"></button>
             </li> 
             
         `);
@@ -76,3 +76,31 @@ function adicionaClick() {
         return e.onclick = function () { removeTarefas(e.id) };
     })
 }
+
+///     MODO ESCURO         ///
+
+const theme = document.querySelector(".theme");
+const body = document.querySelector('body');
+const title = document.querySelector(".title_logo")
+let darkMode;
+
+
+theme.addEventListener("click", themeChange);
+
+function themeChange() {
+    darkMode = !darkMode;
+    body.classList.toggle("dark-mode-body");
+    title.classList.toggle("dark-mode-title");
+    theme.classList.toggle("dark-mode");
+    localStorage.setItem("theme", darkMode);
+}
+
+function themePreferenceAnalysis() {
+    darkMode = JSON.parse(localStorage.getItem("theme"));
+    if (darkMode) {
+        body.classList.add("dark-mode-body");
+        title.classList.add("dark-mode-title");
+        theme.classList.add("dark-mode");
+    }
+}
+themePreferenceAnalysis();
